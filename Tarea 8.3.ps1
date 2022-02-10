@@ -1,22 +1,22 @@
 function Try-UO ($UniOrg) {
-# Verificamos si existe nuestra unidad organizativa, y sino es así la creamos
-if (Get-ADOrganizationalUnit -filter 'Name -like $UniOrg')
-	{
-    write-host "La unidad organizativa $UniOrg existe, seguimos con la ejecución..."
-  }
-  else
-  {
-    write-host "La unidad organizativa $UniOrg no existe, vamos a proceder a su creación..."
-    New-ADOrganizationalUnit -Name "$UniOrg" 
-    write-host "Unidad organizativa $UniOrg creada"
-  }
+	# Verificamos si existe nuestra unidad organizativa, y sino es así la creamos
+	if (Get-ADOrganizationalUnit -filter 'Name -like $UniOrg')
+		{
+			write-host "La unidad organizativa $UniOrg existe, seguimos con la ejecución..."
+		}
+	else
+		{
+			write-host "La unidad organizativa $UniOrg no existe, vamos a proceder a su creación..."
+			New-ADOrganizationalUnit -Name "$UniOrg" 
+			write-host "Unidad organizativa $UniOrg creada"
+		}
 }
 
 
 function New-Usuario ($nombre,$usuarios,$UniOrg) {
 	for ($i=1; $i -le $usuarios ; $i++){
 		if ($i -lt 10)
-			{
+		{
 			 $indice="0$i"
 		 }
 			else
