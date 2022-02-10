@@ -7,7 +7,7 @@ if (Get-ADOrganizationalUnit -filter 'Name -like $UniOrg')
   else
   {
     write-host "La unidad organizativa $UniOrg no existe, vamos a proceder a su creación..."
-    New-ADOrganizationalUnit -Name "$UniOrg" -Path "DC=SOR,DC=LOCAL"
+    New-ADOrganizationalUnit -Name "$UniOrg" 
     write-host "Unidad organizativa $UniOrg creada"
   }
 }
