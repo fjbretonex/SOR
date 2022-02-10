@@ -31,7 +31,7 @@ function New-Usuario ($nombre,$usuarios,$UniOrg) {
 					write-host "Creado el usuario $nombre-$indice y habilitado"
 		}
 		# Mensaje que indica que hemos finalizado correctamente
-		echo "" "Proceso de creación de usuarios finalizado correctamente"
+		write-host "" ; "Proceso de creación de usuarios finalizado correctamente"
 }
 
 function New-Equipo ($CadenaEquipo,$NumEquipos,$UnidOrg) {
