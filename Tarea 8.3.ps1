@@ -14,24 +14,24 @@ if (Get-ADOrganizationalUnit -filter 'Name -like $UniOrg')
 
 
 function New-Usuario ($nombre,$usuarios,$UniOrg) {
-		for ($i=1; $i -le $usuarios ; $i++){
-				if ($i -lt 10)
-					{
-					 $indice="0$i"
-				 }
-					else
-				{
-						$indice=$i
-				}
-				# Instrucción que crea los usuarios
-					New-ADUser -Name $nombre-$indice -GivenName $nombre-$indice -Path “OU=$UniOrg,DC=SOR,DC=local” -accountPassword (ConvertTo-SecureString -AsPlainText “p@ssw0rd” -Force)
-				# Ahora aprovechamos y activamos el usuario
-					Enable-ADAccount -Identity $nombre-$indice
-				# Mensaje de confirmación de creación
-					write-host "Creado el usuario $nombre-$indice y habilitado"
+	for ($i=1; $i -le $usuarios ; $i++){
+		if ($i -lt 10)
+			{
+			 $indice="0$i"
+		 }
+			else
+		{
+				$indice=$i
 		}
-		# Mensaje que indica que hemos finalizado correctamente
-		write-host "" ; "Proceso de creación de usuarios finalizado correctamente"
+		# Instrucción que crea los usuarios
+			New-ADUser -Name $nombre-$indice -GivenName $nombre-$indice -Path “OU=$UniOrg,DC=SOR,DC=local” -accountPassword (ConvertTo-SecureString -AsPlainText “p@ssw0rd” -Force)
+		# Ahora aprovechamos y activamos el usuario
+			Enable-ADAccount -Identity $nombre-$indice
+		# Mensaje de confirmación de creación
+			write-host "Creado el usuario $nombre-$indice y habilitado"
+	}
+	# Mensaje que indica que hemos finalizado correctamente
+	write-host "" ; "Proceso de creación de usuarios finalizado correctamente"
 }
 
 function New-Equipo ($CadenaEquipo,$NumEquipos,$UnidOrg) {
