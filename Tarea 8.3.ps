@@ -1,0 +1,25 @@
+function Try-UO ($UniOrg) {
+# Verificamos si existe nuestra unidad organizativa, y sino es así la creamos
+if (Get-ADOrganizationalUnit -filter 'Name -like $UniOrg')
+{
+echo "La unidad organizativa $UniOrg existe, seguimos con la ejecución..."
+}
+else
+{
+echo "La unidad organizativa $UniOrg no existe, vamos a proceder a su creación..."
+New-ADOrganizationalUnit -Name "$UniOrg" -Path "DC=SOR,DC=LOCAL"
+echo "Unidad organizativa $UniOrg creada"
+}
+}
+function New-Usuario ($nombre,$usuarios,$UniOrg) {
+for ($i=1; $i -le $usuarios ; $i++){
+if ($i -lt 10)
+  {
+    $indice="0$i"
+  }
+  else
+  {
+    $indice=$i
+  }
+# Instrucción que crea los usuarios
+New-ADUser -Name $nombre-$indice -GivenName $nombre-$indice -Path “OU=$UniOrg,DC=SOR,DC=local” -accountPassword (ConvertTo-SecureString -AsPlainText “p@ssw0rd” -Force)
